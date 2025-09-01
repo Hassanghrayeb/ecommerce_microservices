@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
+
+    <!-- Console Appender.  Typically used during dev-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Rolling file appender.  One file / month. Max 30 months or 100MB -->
+    <property name="LOG_FILE" value="ecommerce_controller"/>
+    <property name="LOG_DIR" value="logs/hamster"/>
+    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${LOG_FILE}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/%d{yyyy/MM}/${LOG_FILE}.%i.gz</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <maxFileSize>100MB</maxFileSize>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root level logger -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="ROLLING"/>
+    </root>
+
+    <!-- Additional package level loggers -->
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.springframework.jdbc" level="INFO"/>
+    <logger name="org.springframework.security" level="INFO"/>
+    <logger name="org.flywaydb.core" level="INFO"/>
+
+    <logger name="org.springframework.web.servlet.DispatcherServlet" level="WARN"/>
+    <logger name="logging.level.org.springframework.web.client.RestTemplate" level="WARN"/>
+    <logger name="logging.level.org.springframework.web.reactive.function.client.WebClient" level="WARN"/>
+    <logger name="org.springframework.jdbc.core.JdbcTemplate" level="WARN"/>
+    <logger name="org.springframework.jdbc.core.StatementCreatorUtils" level="WARN"/>
+
+</configuration>

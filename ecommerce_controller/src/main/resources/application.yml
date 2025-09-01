@@ -1,0 +1,36 @@
+spring:
+  postgres:
+    jdbcUrl: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/ecommerce}
+    username: ${DATASOURCE_USERNAME:postgres}
+    password: ${DATASOURCE_PASSWORD:postgres}
+    testWhileIdle: true
+    validationQuery: select 1
+
+  flyway:
+    locations: classpath:/flyway/common
+    ignore-missing-migrations: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - prometheus
+          - health
+          - info
+          - metrics
+          - version
+  endpoint:
+    health:
+      show-components: always
+
+springdoc:
+  api-docs:
+    enabled: ${SWAGGER_ENABLED:true}
+    path: '/api-docs'
+  swagger-ui:
+    enabled: ${SWAGGER_UI_ENABLED:true}
+    path: '/swagger-ui'
+    disable-swagger-default-url: true
+
+access-token-lifespan-in-minutes: 120

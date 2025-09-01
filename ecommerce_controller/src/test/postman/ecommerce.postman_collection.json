@@ -1,0 +1,1655 @@
+{
+	"info": {
+		"_postman_id": "4141e49a-f5e3-4478-a02a-9e52f432fcee",
+		"name": "Ecommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31093013"
+	},
+	"item": [
+		{
+			"name": "0 - Actuator",
+			"item": [
+				{
+					"name": "GET Actuator Prometheus",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"access_token\", data.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"ANTOINE\",\n\t\"password\":\"ANTOINE1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/actuator/prometheus",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"prometheus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Actuator Health",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"access_token\", data.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"ANTOINE\",\n\t\"password\":\"ANTOINE1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/actuator/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Actuator Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"access_token\", data.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"ANTOINE\",\n\t\"password\":\"ANTOINE1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/actuator/info",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"info"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "1 - Auth",
+			"item": [
+				{
+					"name": "Access Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"pm.environment.set(\"access_token\", data.access_token);",
+									"pm.environment.set(\"refresh_token\", data.refresh_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"admin\",\n\t\"password\":\"Pass-123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"pm.environment.set(\"access_token\", data.access_token);",
+									"pm.environment.set(\"refresh_token\", data.refresh_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"admin\",\n\t\"refreshToken\":\"{{refresh_token}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/refresh",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2 - Admin Login",
+			"item": [
+				{
+					"name": "Get Paged Logins (default page, size)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Paged Logins (page, size)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/login?page=0&size=25",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"login"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "25"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Paged Logins by Role name",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/login/rolename/admin",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"login",
+								"rolename",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Login",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"fayesk\",\n    \"password\": \"Pass-123\",\n    \"enabled\": \"true\",\n    \"roles\" : [1, 2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Login",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/login/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"login",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Login",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin1\",\n    \"roles\": [1]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/login/105",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"login",
+								"105"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Login Roles",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/login/1/roles/1,3,4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"login",
+								"1",
+								"roles",
+								"1,3,4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Login status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\" : 101,\n    \"status\" : true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/login/enabled",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"login",
+								"enabled"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3 - Role",
+			"item": [
+				{
+					"name": "Get Paged Roles (default page, size)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/role",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Paged Roles (page, size)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/role?page=2&size=25",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"role"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "size",
+									"value": "25"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User's Roles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/role/user/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"role",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Role",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test Role\",\n    \"description\": \"This is a test role\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/role",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Role",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/role/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"role",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Role",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test Role\",\n    \"description\": \"This is a test role\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/role/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"role",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Role Permissions",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/role/1/permissions/1,3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"role",
+								"1",
+								"permissions",
+								"1,3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Role",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/role/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"role",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4 - Permission",
+			"item": [
+				{
+					"name": "Get Paged Permissions (default page, size)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/permission",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"permission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Paged Permissions (page, size)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/permission?page=2&size=25",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"permission"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "size",
+									"value": "25"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/permission",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"permission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/permission/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"permission",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "9 - User Preference",
+			"item": [
+				{
+					"name": "User preference",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user-preference",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user-preference"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Preference",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"theme\": \"DARK\",\n    \"language\": \"english\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user-preference",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user-preference"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "12 - Person Controller",
+			"item": [
+				{
+					"name": "Person",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/person",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Person",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"hasan\",\n    \"lastName\": \"ghrayeb\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/person",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"person"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "29 - User Registration",
+			"item": [
+				{
+					"name": "Register a User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Recaptchatoken",
+								"value": "4567",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\":\"dani\",\n    \"lastName\":\"fayad\",\n    \"emailAddress\":\"dani@gmail.com\",\n    \"password\":\"Pass-123\",\n    \"confirmPassword\":\"Pass-123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/registration",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Product Controller",
+			"item": [
+				{
+					"name": "Get Paged Products (default page, size)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/product",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "product"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Paged Products (page, size)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/product?page=0&size=25",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "product"],
+							"query": [
+								{"key": "page", "value": "0"},
+								{"key": "size", "value": "25"}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product by Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/product/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "product", "1"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sku\": \"PRD-001\",\n  \"name\": \"Laptop\",\n  \"description\": \"High-end gaming laptop\",\n  \"price\": 1500.00,\n  \"currency\": \"USD\",\n  \"stock\": 25,\n  \"active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/product",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "product"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sku\": \"PRD-001\",\n  \"name\": \"Laptop - Updated\",\n  \"description\": \"Updated description\",\n  \"price\": 1550.00,\n  \"currency\": \"USD\",\n  \"stock\": 20,\n  \"active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/product/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "product", "1"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/product/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "product", "1"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Low-Stock Products (default page, size)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/product/low-stock",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "product", "low-stock"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Registration Controller",
+			"item": [
+				{
+					"name": "Get Paged Registered Users (default page, size)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/registration",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "registration"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Paged Registered Users (page, size)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/registration?page=0&size=25",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "registration"],
+							"query": [
+								{ "key": "page", "value": "0" },
+								{ "key": "size", "value": "25" }
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Registered User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/registration/user/1/verify",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "registration", "user", "1", "verify"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart Controller",
+			"item": [
+				{
+					"name": "Get My Cart",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/cart",
+							"host": ["{{base_url}}"],
+							"path": ["cart"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Item To Cart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": 1,\n  \"quantity\": 2\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": {
+							"raw": "{{base_url}}/cart/items",
+							"host": ["{{base_url}}"],
+							"path": ["cart", "items"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Cart Item Quantity",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"quantity\": 3\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": {
+							"raw": "{{base_url}}/cart/items/10",
+							"host": ["{{base_url}}"],
+							"path": ["cart", "items", "10"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Item From Cart",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/cart/items/10",
+							"host": ["{{base_url}}"],
+							"path": ["cart", "items", "10"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear User Cart",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/cart/clear",
+							"host": ["{{base_url}}"],
+							"path": ["cart", "clear"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Cart Controller",
+			"item": [
+				{
+					"name": "Get Paged Carts (default page, size)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/cart",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "cart"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Paged Carts (page, size)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/cart?page=0&size=25",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "cart"],
+							"query": [
+								{ "key": "page", "value": "0" },
+								{ "key": "size", "value": "25" }
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear User Cart (ADMIN)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/cart/clear",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "cart", "clear"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Cart by ID (ADMIN)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/cart/{{cart_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["admin", "cart", "{{cart_id}}"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Order Controller",
+			"item": [
+				{
+					"name": "Get Paged Orders (default page, size)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/order",
+							"host": ["{{base_url}}"],
+							"path": ["admin","order"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Paged Orders (page, size)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/order?page=0&size=25",
+							"host": ["{{base_url}}"],
+							"path": ["admin","order"],
+							"query": [
+								{ "key": "page", "value": "0" },
+								{ "key": "size", "value": "25" }
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order by Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/order/1",
+							"host": ["{{base_url}}"],
+							"path": ["admin","order", "1"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order Controller",
+			"item": [
+				{
+					"name": "Get Order by Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/order/1",
+							"host": ["{{base_url}}"],
+							"path": ["order", "1"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Orders (paged)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/order?page=0&size=25",
+							"host": ["{{base_url}}"],
+							"path": ["order"],
+							"query": [
+								{ "key": "page", "value": "0" },
+								{ "key": "size", "value": "25" }
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Checkout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/order/checkout",
+							"host": ["{{base_url}}"],
+							"path": ["order", "checkout"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order Status",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/order/1/status?status=SHIPPED",
+							"host": ["{{base_url}}"],
+							"path": ["order", "1", "status"],
+							"query": [
+								{ "key": "status", "value": "SHIPPED" }
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
